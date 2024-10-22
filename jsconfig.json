@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+      "paths": {
+        "views/*": [
+          "./src/views/*"
+        ]
+      }
+    }
+  }
