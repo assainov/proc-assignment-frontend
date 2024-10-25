@@ -3,6 +3,9 @@
       "paths": {
         "views/*": [
           "./src/views/*"
+        ],
+        "components/*": [
+          "./src/views/components/*"
         ]
       }
     }

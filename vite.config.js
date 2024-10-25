@@ -8,6 +8,7 @@ export default defineConfig({
   resolve: {
     alias: {
       'views': path.resolve(__dirname, './src/views'),  // eslint-disable-line no-undef
+      'components': path.resolve(__dirname, './src/views/components'),  // eslint-disable-line no-undef
     },
   },
 });
