@@ -41,6 +41,7 @@ export const Input = styled.input`
 
   &::placeholder {
     color: ${pr => pr.theme.colors.darkGray};
+    font-size: ${pr => pr.theme.fontSizes.desktop.input};
   }
 `;
 

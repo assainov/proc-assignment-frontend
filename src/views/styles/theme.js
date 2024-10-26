@@ -16,7 +16,7 @@ export const theme = {
       h1: '3rem',
       h2: '2rem',
       text: '1.2rem',
-      input: '1.2rem',
+      input: '1rem',
     },
     tablet: {
       link: '14px',
