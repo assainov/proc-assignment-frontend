@@ -8,6 +8,7 @@ export const getPeople = async (search) => {
       data: data.results,
       error: null
     };
+
   } catch (e) {
     return {
       data: null,
