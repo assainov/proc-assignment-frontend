@@ -1,4 +1,5 @@
 import { FiSearch } from 'react-icons/fi';
+import { RiCloseLargeFill } from 'react-icons/ri';
 import styled, { css } from 'styled-components';
 
 export const DEFAULT_SEARCH_WIDTH = '40rem';
@@ -86,6 +87,17 @@ export const SearchIcon = styled(FiSearch)`
   left: 10px;
   top: 50%;
   transform: translate(0,-50%);
+
+  color: ${pr => pr.theme.colors.darkGray};
+`;
+
+export const ClearIcon = styled(RiCloseLargeFill)`
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translate(0,-50%);
+  
+  cursor: pointer;
 
   color: ${pr => pr.theme.colors.darkGray};
 `;

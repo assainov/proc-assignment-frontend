@@ -1,7 +1,7 @@
 import React from 'react';
 import useAutoComplete from 'views/hooks/use-autocomplete';
 import { Spinner } from 'views/components/@shared/Loader/Loader.styles';
-import { Container, DEFAULT_SEARCH_WIDTH, Input, InputWrapper, ListContainer, ListItem, SearchIcon, SpinnerWrapper } from './AutoComplete.styles';
+import { ClearIcon, Container, DEFAULT_SEARCH_WIDTH, Input, InputWrapper, ListContainer, ListItem, SearchIcon, SpinnerWrapper } from './AutoComplete.styles';
 import { useResultStore } from 'views/state/useResultStore';
 import { getPeople } from 'views/services/queries/getPeople';
 import { usePeopleStore } from 'views/state/usePeopleStore';
@@ -10,6 +10,7 @@ const AutoComplete = ({ width = DEFAULT_SEARCH_WIDTH }) => {
   const people = usePeopleStore(state => state.people);
   const setPeople = usePeopleStore(state => state.setPeople);
   const setResult = useResultStore(state => state.setResult);
+  const result = useResultStore(state => state.result);
 
   const { bindInput, bindOptions, bindOption, isLoading, suggestions, selectedIndex } = useAutoComplete({
     onChange: (option) => setResult(people.find(s => s.name === option.value)),
@@ -48,6 +49,12 @@ const AutoComplete = ({ width = DEFAULT_SEARCH_WIDTH }) => {
           placeholder="Search a name"
           {...bindInput}
         />
+        {result ?
+          <ClearIcon
+            onClick={() => { setResult(null); bindInput.onEmpty(); }}
+            size={20}
+          />
+          : null}
       </InputWrapper>
       <ListContainer {...bindOptions}>
         {renderSuggestions()}

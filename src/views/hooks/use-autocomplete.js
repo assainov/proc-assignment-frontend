@@ -155,6 +155,7 @@ export default function useAutoComplete({ delay = 500, startFrom = 1, source, on
     bindInput: {
       value: textValue,
       onChange: e => onTextChange(e.target.value),
+      onEmpty: () => onTextChange(''),
       onKeyDown
     },
     bindOptions: {
