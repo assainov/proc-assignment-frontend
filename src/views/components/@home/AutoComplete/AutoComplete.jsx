@@ -11,7 +11,7 @@ const Options = [
 ];
 
 const AutoComplete = ({ width = DEFAULT_SEARCH_WIDTH }) => {
-  const { bindInput, bindOptions,  bindOption, isBusy, suggestions, selectedIndex} = useAutoComplete({
+  const { bindInput, bindOptions,  bindOption, isLoading, suggestions, selectedIndex} = useAutoComplete({
     onChange: value => console.log(value),
     source: (search) => Options.filter(option => new RegExp(`^${search}`, 'i').test(option.label))
   });
@@ -25,8 +25,9 @@ const AutoComplete = ({ width = DEFAULT_SEARCH_WIDTH }) => {
   return (
     <Container $width={width}>
       <InputWrapper>
-        {isBusy ? renderSpinner() : <SearchIcon size={25} />}
+        {isLoading ? renderSpinner() : <SearchIcon size={25} />}
         <Input
+          $isSuggesting={suggestions.length > 0}
           placeholder="Search a name"
           {...bindInput}
         />

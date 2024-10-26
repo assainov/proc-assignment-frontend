@@ -8,8 +8,8 @@ const spinAnimation = keyframes`
 export const Spinner = styled.div`
   padding: 0;
   margin: 0;
-  border: 4px solid #fff;
-  border-top: 4px solid black;
+  border: 2px solid #fff;
+  border-top: 2px solid black;
   border-radius: 50%;
   width: 25px;
   height: 25px;

@@ -3,7 +3,7 @@ import { Header, Logo, Nav, StyledLink } from './Navigation.styles';
 
 const Navigation = () => (
   <Header>
-    <Logo to="/">Logo</Logo>
+    <Logo to="/">By Ilyas Assainov</Logo>
     <Nav>
       <StyledLink to="/">Home</StyledLink>
       <StyledLink to="/login">Login</StyledLink>

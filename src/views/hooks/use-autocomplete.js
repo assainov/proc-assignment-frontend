@@ -45,7 +45,7 @@ const KEY_CODES = {
  * @returns {function} returns.bindInput.onKeyDown - Key down handler for the input element.
  * @returns {Object} returns.bindOptions - Bindings for the options container. Use as a spread operator to <ul {...bindOptions} /> component.
  * @returns {Object} returns.bindOptions.ref - Ref for the options container.
- * @returns {boolean} returns.isBusy - Indicates if the component is busy fetching suggestions.
+ * @returns {boolean} returns.isLoading - Indicates if the component is busy fetching suggestions.
  * @returns {Array} returns.suggestions - The list of suggestions.
  * @returns {number} returns.selectedIndex - The index of the currently selected suggestion.
  */
@@ -54,7 +54,7 @@ export default function useAutoComplete({ delay = 500, source, onChange }) {
   const [myTimeout, setMyTimeOut] = useState(setTimeout(() => { }, 0));
   const listRef = useRef();
   const [suggestions, setSuggestions] = useState([]);
-  const [isBusy, setBusy] = useState(false);
+  const [isLoading, setLoading] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const [textValue, setTextValue] = useState('');
 
@@ -86,12 +86,12 @@ export default function useAutoComplete({ delay = 500, source, onChange }) {
   }
 
   function onTextChange(searchTerm) {
-    setBusy(true);
+    setLoading(true);
     setTextValue(searchTerm);
     clearSuggestions();
     delayInvoke(() => {
       getSuggestions(searchTerm);
-      setBusy(false);
+      setLoading(false);
     });
   }
 
@@ -152,7 +152,7 @@ export default function useAutoComplete({ delay = 500, source, onChange }) {
     bindOptions: {
       ref: listRef
     },
-    isBusy,
+    isLoading,
     suggestions,
     selectedIndex,
   };

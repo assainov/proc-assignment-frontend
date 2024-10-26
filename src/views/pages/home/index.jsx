@@ -1,8 +1,8 @@
 import React from 'react';
-import AutoComplete from 'views/components/@home/AutoComplete/AutoComplete';
+import HeroScreen from 'views/components/@home/HeroScreen/HeroScreen';
 
 const Home = () => (
-  <AutoComplete />
+  <HeroScreen />
 );
 
 export default Home;
