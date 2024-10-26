@@ -3,17 +3,32 @@ import useAutoComplete from 'views/hooks/use-autocomplete';
 import { Spinner } from 'views/components/@shared/Loader/Loader.styles';
 import { Container, DEFAULT_SEARCH_WIDTH, Input, InputWrapper, ListContainer, ListItem, SearchIcon, SpinnerWrapper } from './AutoComplete.styles';
 
-const Options = [
-  { value: '1', label: 'John' },
-  { value: '2', label: 'Jack' },
-  { value: '3', label: 'Jane' },
-  { value: '4', label: 'Mike' },
-];
+const getSuggestions = async (search) => {
+  try {
+    const res = await fetch(`https://swapi.dev/api/people/?search=${search}`);
+    const data = await res.json();
+    return data.results.map(person => ({ value: person.name, label: person.name }));
+  } catch (e) {
+    console.error(e);
+    return [];
+  }
+};
 
 const AutoComplete = ({ width = DEFAULT_SEARCH_WIDTH }) => {
+  // const [error, setError] = React.useState(null);
+
   const { bindInput, bindOptions,  bindOption, isLoading, suggestions, selectedIndex} = useAutoComplete({
     onChange: value => console.log(value),
-    source: (search) => Options.filter(option => new RegExp(`^${search}`, 'i').test(option.label))
+    source: (search) => {
+      try {
+        return getSuggestions(search);
+      } catch (e) {
+        // setError(e.message);
+        console.error(e.message);
+        return [];
+      }
+    },
+    startFrom: 3
   });
 
   const renderSpinner = () => (

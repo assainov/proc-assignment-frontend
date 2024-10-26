@@ -34,6 +34,7 @@ const KEY_CODES = {
  *
  * @param {Object} props - The properties object.
  * @param {number} props.delay - Delay in milliseconds between last keyboard input and fetching options.
+ * @param {number} props.startFrom - Start suggesting after a certain number of characters are inputted.
  * @param {Source} props.source - Callback for providing dropdown options.
  * @param {OnChange} props.onChange - Callback when user selects an option.
  * @returns {Object} returns - The autocomplete bindings and state.
@@ -49,7 +50,7 @@ const KEY_CODES = {
  * @returns {Array} returns.suggestions - The list of suggestions.
  * @returns {number} returns.selectedIndex - The index of the currently selected suggestion.
  */
-export default function useAutoComplete({ delay = 500, source, onChange }) {
+export default function useAutoComplete({ delay = 500, startFrom = 1, source, onChange }) {
 
   const [myTimeout, setMyTimeOut] = useState(setTimeout(() => { }, 0));
   const listRef = useRef();
@@ -86,8 +87,15 @@ export default function useAutoComplete({ delay = 500, source, onChange }) {
   }
 
   function onTextChange(searchTerm) {
-    setLoading(true);
     setTextValue(searchTerm);
+
+    /* Start suggesting after a certain number of characters are inputted */
+    if (searchTerm.length < startFrom) {
+      clearSuggestions();
+      return;
+    }
+
+    setLoading(true);
     clearSuggestions();
     delayInvoke(() => {
       getSuggestions(searchTerm);
