@@ -2,7 +2,7 @@ import React from 'react';
 import { stripUnderscore } from './utils';
 import { Table, TableCell, TableContainer, TableHeader, TableRow } from './ResultSection.styled';
 import EmptySection from './EmptySection';
-import { useResultStore } from 'views/state/useResultStore';
+import { useResultStore } from '../../../../state/useResultStore';
 
 const ResultSection = () => {
   const data = useResultStore(state => state.result);

@@ -2,9 +2,9 @@ import React from 'react';
 import useAutoComplete from 'views/hooks/use-autocomplete';
 import { Spinner } from 'views/components/@shared/Loader/Loader.styles';
 import { ClearIcon, Container, DEFAULT_SEARCH_WIDTH, Input, InputWrapper, ListContainer, ListItem, SearchIcon, SpinnerWrapper } from './AutoComplete.styles';
-import { useResultStore } from 'views/state/useResultStore';
-import { getPeople } from 'views/services/queries/getPeople';
-import { usePeopleStore } from 'views/state/usePeopleStore';
+import { useResultStore } from '../../../../state/useResultStore';
+import { getPeople } from '../../../../services/queries/getPeople';
+import { usePeopleStore } from '../../../../state/usePeopleStore';
 
 const AutoComplete = ({ width = DEFAULT_SEARCH_WIDTH }) => {
   const people = usePeopleStore(state => state.people);
