@@ -1,15 +1,15 @@
 import React from 'react';
 import { stripUnderscore } from './utils';
 import { Table, TableCell, TableContainer, TableHeader, TableRow } from './ResultSection.styled';
-import ErrorSection from './ErrorSection';
 import EmptySection from './EmptySection';
+import { useResultStore } from 'views/state/useResultStore';
 
-const ResultSection = ({ data, error }) => {
+const ResultSection = () => {
+  const data = useResultStore(state => state.result);
+
   const headers = [
     'name', 'height', 'mass', 'hair_color', 'skin_color', 'eye_color', 'birth_year', 'gender'
   ];
-
-  if (error) return <ErrorSection message={error} />;
 
   if (!data) return <EmptySection />;
 

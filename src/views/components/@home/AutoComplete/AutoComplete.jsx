@@ -2,31 +2,21 @@ import React from 'react';
 import useAutoComplete from 'views/hooks/use-autocomplete';
 import { Spinner } from 'views/components/@shared/Loader/Loader.styles';
 import { Container, DEFAULT_SEARCH_WIDTH, Input, InputWrapper, ListContainer, ListItem, SearchIcon, SpinnerWrapper } from './AutoComplete.styles';
-
-const getSuggestions = async (search) => {
-  try {
-    const res = await fetch(`https://swapi.dev/api/people/?search=${search}`);
-    const data = await res.json();
-    return data.results.map(person => ({ value: person.name, label: person.name }));
-  } catch (e) {
-    console.error(e);
-    return [];
-  }
-};
+import { useResultStore } from 'views/state/useResultStore';
+import { getPeople } from 'views/services/queries/getPeople';
+import { usePeopleStore } from 'views/state/usePeopleStore';
 
 const AutoComplete = ({ width = DEFAULT_SEARCH_WIDTH }) => {
-  // const [error, setError] = React.useState(null);
+  const people = usePeopleStore(state => state.people);
+  const setPeople = usePeopleStore(state => state.setPeople);
+  const setResult = useResultStore(state => state.setResult);
 
-  const { bindInput, bindOptions,  bindOption, isLoading, suggestions, selectedIndex} = useAutoComplete({
-    onChange: value => console.log(value),
-    source: (search) => {
-      try {
-        return getSuggestions(search);
-      } catch (e) {
-        // setError(e.message);
-        console.error(e.message);
-        return [];
-      }
+  const { bindInput, bindOptions, bindOption, isLoading, suggestions, selectedIndex } = useAutoComplete({
+    onChange: (option) => setResult(people.find(s => s.name === option.value)),
+    source: async (search) => {
+      const { error, data } = await getPeople(search);
+      setPeople(data, error);
+      return error ? [] : data.map(person => ({ value: person.name, label: person.name }));
     },
     startFrom: 3
   });
@@ -35,6 +25,18 @@ const AutoComplete = ({ width = DEFAULT_SEARCH_WIDTH }) => {
     <SpinnerWrapper>
       <Spinner />
     </SpinnerWrapper>
+  );
+
+  const renderSuggestions = () => (
+    suggestions.map((suggestion, index) => (
+      <ListItem
+        $isSelected={selectedIndex === index}
+        key={index}
+        {...bindOption}
+      >
+        {suggestion.label}
+      </ListItem>
+    ))
   );
 
   return (
@@ -47,20 +49,8 @@ const AutoComplete = ({ width = DEFAULT_SEARCH_WIDTH }) => {
           {...bindInput}
         />
       </InputWrapper>
-      <ListContainer
-        {...bindOptions}
-      >
-        {
-          suggestions.map((_, index) => (
-            <ListItem
-              $isSelected={selectedIndex === index}
-              key={index}
-              {...bindOption}
-            >
-              {suggestions[index].label}
-            </ListItem>
-          ))
-        }
+      <ListContainer {...bindOptions}>
+        {renderSuggestions()}
       </ListContainer>
     </Container>
   );

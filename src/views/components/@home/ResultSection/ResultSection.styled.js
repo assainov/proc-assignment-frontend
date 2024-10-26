@@ -28,6 +28,7 @@ export const TableRow = styled.tr`
 `;
 
 export const TableHeader = styled.th`
+  width: 250px;
   text-align: left;
   padding: 16px;
   background-color: ${pr => pr.theme.backgrounds.lightGray};
@@ -36,12 +37,6 @@ export const TableHeader = styled.th`
 export const TableCell = styled.td`
   text-align: left;
   padding: 16px;
-`;
-
-export const ErrorMessage = styled.div`
-  color: red;
-  text-align: center;
-  padding: 6rem 2rem 0;
 `;
 
 export const EmptyState = styled.div`

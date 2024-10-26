@@ -1,0 +1,11 @@
+import { create } from 'zustand';
+
+/**
+ * Using a simple state management tool for a simple app.
+ * Would use something more robust like Redux for a larger app.
+ */
+export const usePeopleStore = create((set) => ({
+  error: null,
+  people: [],
+  setPeople: (newlyFetchedPeople, error) => set({ people: newlyFetchedPeople, error }),
+}));
