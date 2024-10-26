@@ -8,7 +8,7 @@ export const theme = {
   },
   backgrounds: {
     white: '#ffffff',
-    lightGray: '#e9e9e9'
+    lightGray: '#f2f2f2'
   },
   fontSizes: {
     desktop: {

@@ -1,0 +1,1 @@
+export const stripUnderscore = (str) => str.replace(/_/g, ' ');
