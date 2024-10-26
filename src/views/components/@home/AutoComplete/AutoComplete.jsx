@@ -51,7 +51,7 @@ const AutoComplete = ({ width = DEFAULT_SEARCH_WIDTH }) => {
         />
         {result ?
           <ClearIcon
-            onClick={() => { setResult(null); bindInput.onEmpty(); }}
+            onClick={() => { setResult(null); bindInput.$onEmpty(); }}
             size={20}
           />
           : null}
