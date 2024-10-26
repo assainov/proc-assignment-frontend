@@ -1,6 +1,6 @@
 export const getPeople = async (search) => {
   try {
-    const res = await fetch(`https://swapi.dev/api/people/?search=${search}`);
+    const res = await fetch(`${import.meta.env.VITE_API_HOST}/api/people/?search=${search}`);
     const data = await res.json();
 
     console.log(data.results);
