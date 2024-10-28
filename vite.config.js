@@ -12,6 +12,8 @@ export default defineConfig({
     alias: {
       'views': path.resolve(__dirname, './src/views'),  // eslint-disable-line no-undef
       'components': path.resolve(__dirname, './src/views/components'),  // eslint-disable-line no-undef
+      'services': path.resolve(__dirname, './src/services'),  // eslint-disable-line no-undef
+      'state': path.resolve(__dirname, './src/state'),  // eslint-disable-line no-undef
     },
   },
   define: {

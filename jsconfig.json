@@ -1,12 +1,10 @@
 {
-    "compilerOptions": {
-      "paths": {
-        "views/*": [
-          "./src/views/*"
-        ],
-        "components/*": [
-          "./src/views/components/*"
-        ]
-      }
+  "compilerOptions": {
+    "paths": {
+      "views/*": ["./src/views/*"],
+      "components/*": ["./src/views/components/*"],
+      "state/*": ["./src/state/*"],
+      "services/*": ["./src/services/*"]
     }
   }
+}

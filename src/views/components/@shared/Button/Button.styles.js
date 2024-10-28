@@ -13,6 +13,9 @@ export const Button = styled.button`
   width: 300px;
   cursor: pointer;
 
+  display: flex;
+  justify-content: center;
+
   &:hover {
     box-shadow: ${({ theme }) => theme.boxShadows.button};
     transform: translateY(-2px);

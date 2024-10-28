@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { signup } from 'services/authService/signup';
+import { useAuthStore } from 'state/useAuthStore';
 import { Button } from 'views/components/@shared/Button/Button.styles';
 import { Form, FormContainer, FormHeading, FormError } from 'views/components/@shared/Form/Form.styles';
 import Input from 'views/components/@shared/Input/Input';
+import { Spinner } from 'views/components/@shared/Loader/Loader.styles';
 
 const SignupForm = () => {
   const [formData, setFormData] = useState({
@@ -13,6 +17,12 @@ const SignupForm = () => {
   });
 
   const [error, setError] = useState('');
+  const setUser = useAuthStore(state => state.setUser);
+  const isUserLoading = useAuthStore(state => state.isLoading);
+  const setIsLoading = useAuthStore(state => state.setIsLoading);
+  const setIsError = useAuthStore(state => state.setIsError);
+  const setMessage = useAuthStore(state => state.setMessage);
+  const navigate = useNavigate();
 
   const { firstname, surname, email, password, confirmPassword } = formData;
 
@@ -25,7 +35,7 @@ const SignupForm = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!firstname || !surname || !email || !password || !confirmPassword) {
       setError('All fields are required');
@@ -39,8 +49,26 @@ const SignupForm = () => {
       setError('Passwords do not match');
       return;
     }
+
+    // All good, proceed with signup
     setError('');
-    console.log(formData);
+    setIsLoading(true);
+    const { error, data } = await signup(email, password, firstname, surname);
+
+    if (error) {
+      setIsError(true);
+      setError(error);
+      setMessage(error.message);
+      setIsLoading(false);
+      return;
+    }
+
+    setIsError(false);
+    setIsLoading(false);
+    setMessage('');
+    setUser(data);
+
+    navigate('/');
   };
 
   return (
@@ -87,7 +115,9 @@ const SignupForm = () => {
           type="password"
           value={confirmPassword}
         />
-        <Button type="submit">Create account</Button>
+        <Button type="submit">
+          {isUserLoading ? <Spinner /> : 'Create account'}
+        </Button>
         {error ? <FormError>{error}</FormError> : null}
       </Form>
     </FormContainer>
