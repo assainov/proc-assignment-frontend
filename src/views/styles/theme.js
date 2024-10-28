@@ -31,5 +31,6 @@ export const theme = {
   },
   boxShadows: {
     input: '0 1px 4px rgba(32, 33, 36, 0.28)',
+    button: '0 2px 10px rgba(32, 33, 36, 0.28)',
   },
 };
