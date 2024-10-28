@@ -4,6 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "cy:ci": "start-server-and-test dev http-get://localhost:5173 cy:run",
+    "cy:e2e": "start-server-and-test dev http-get://localhost:5173 cy:open-e2e",
+    "cy:open-e2e": "cypress open --e2e --browser chrome",
+    "cy:run": "cypress run",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
@@ -37,7 +41,9 @@
     "@types/react": "^18.3.10",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react-swc": "^3.5.0",
+    "cypress": "^13.15.1",
     "eslint": "^9.11.1",
+    "eslint-plugin-cypress": "^4.0.0",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-jest": "^28.8.3",
     "eslint-plugin-react": "^7.37.0",
@@ -51,6 +57,7 @@
     "jest-svg-transformer": "^1.0.0",
     "lint-staged": "^15.2.10",
     "prettier": "^3.3.3",
+    "start-server-and-test": "^2.0.8",
     "vite": "^5.4.8"
   }
 }

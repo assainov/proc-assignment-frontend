@@ -20,7 +20,7 @@ const ResultSection = () => {
           {headers.map((header, index) => (
             <TableRow key={index}>
               <TableHeader>{stripUnderscore(header)}</TableHeader>
-              <TableCell>{data[header] || 'N/A'}</TableCell>
+              <TableCell data-test={header}>{data[header] || 'N/A'}</TableCell>
             </TableRow>
           ))}
         </tbody>

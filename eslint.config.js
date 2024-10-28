@@ -4,8 +4,10 @@ import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
 import jest from 'eslint-plugin-jest';
+import pluginCypress from 'eslint-plugin-cypress/flat';
 
 const config = [
+  pluginCypress.configs.recommended,
   { ignores: ['dist'] },
   {
     files: ['test/**'],
@@ -21,7 +23,7 @@ const config = [
       ecmaVersion: 2020,
       globals: {
         ...globals.browser,
-        ...globals.jest
+        ...globals.jest,
       },
       parserOptions: {
         ecmaVersion: 'latest',

@@ -32,6 +32,7 @@ const AutoComplete = ({ width = DEFAULT_SEARCH_WIDTH }) => {
     suggestions.map((suggestion, index) => (
       <ListItem
         $isSelected={selectedIndex === index}
+        data-test={`${suggestion.label}`}
         key={index}
         {...bindOption}
       >
