@@ -4,7 +4,7 @@ const ProtectedRoute = ({ user, children }) => {
   if (!user) return (
     <Navigate
       replace
-      to="/login"
+      to="/signupwall"
     />
   );
 

@@ -10,6 +10,7 @@ import { ThemeProvider } from 'styled-components';
 import { theme } from './styles/theme';
 import ProtectedRoute from './components/@layout/ProtectedRoute/ProtectedRoute';
 import { useAuthStore } from 'state/useAuthStore';
+import SignupWall from './pages/signupwall';
 
 const App = () => {
   const user = useAuthStore(state => state.user);
@@ -27,6 +28,10 @@ const App = () => {
               </ProtectedRoute>
             }
             index
+          />
+          <Route
+            element={<SignupWall />}
+            path="signupwall"
           />
           <Route
             element={<Login />}
