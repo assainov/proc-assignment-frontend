@@ -8,33 +8,42 @@ import Signup from './pages/signup';
 import Page404 from './pages/page-404';
 import { ThemeProvider } from 'styled-components';
 import { theme } from './styles/theme';
+import ProtectedRoute from './components/@layout/ProtectedRoute/ProtectedRoute';
+import { useAuthStore } from 'state/useAuthStore';
 
-const App = () => (
-  <ThemeProvider theme={theme}>
-    <Routes>
-      <Route
-        element={<Layout />}
-        path="/"
-      >
+const App = () => {
+  const user = useAuthStore(state => state.user);
+  return (
+    <ThemeProvider theme={theme}>
+      <Routes>
         <Route
-          element={<Home />}
-          index
-        />
-        <Route
-          element={<Login />}
-          path="login"
-        />
-        <Route
-          element={<Signup />}
-          path="signup"
-        />
-        <Route
-          element={<Page404 />}
-          path="*"
-        />
-      </Route>
-    </Routes>
-  </ThemeProvider>
-);
+          element={<Layout />}
+          path="/"
+        >
+          <Route
+            element={
+              <ProtectedRoute user={user}>
+                <Home />
+              </ProtectedRoute>
+            }
+            index
+          />
+          <Route
+            element={<Login />}
+            path="login"
+          />
+          <Route
+            element={<Signup />}
+            path="signup"
+          />
+          <Route
+            element={<Page404 />}
+            path="*"
+          />
+        </Route>
+      </Routes>
+    </ThemeProvider>
+  );
+};
 
 export default App;
