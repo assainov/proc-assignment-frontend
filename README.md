@@ -44,6 +44,32 @@ npm run preview
 
 After running these commands, visit [http://localhost:4173](http://localhost:4173) in your browser to see the application in action.
 
+4. **(Optional) Continuous Integration**:
+
+Stop above process, and run the following commands, simulating the CI pipeline (ensure the backend is up-and-running):
+
+```sh
+npm run test && npm run build && npm run cy:ci
+```
+
+5. **(Optional) Observe E2E tests in the browser**:
+
+```sh
+npm run cy:e2e - then click on `spec.cy.js` in the opened window.
+```
+
+6. **Start coding**:
+
+```sh
+npm run dev
+```
+
+6. **Write more E2E tests**:
+
+```sh
+npm run dev && npm run cy:open-e2e
+```
+
 ## Features
 
 - **Search with Autocomplete**: Allows users to search for people from the SWAPI engine through our caching-backed layer, providing suggestions as they type.

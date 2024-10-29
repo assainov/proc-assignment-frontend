@@ -32,6 +32,7 @@ const StyledInput = styled.input`
 const Input = ({ type = 'text', name, value, onChange, placeholder }) => (
   <InputWrapper>
     <StyledInput
+      data-test={name}
       id={name}
       name={name}
       onChange={onChange}

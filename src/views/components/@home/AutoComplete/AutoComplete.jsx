@@ -47,6 +47,7 @@ const AutoComplete = ({ width = DEFAULT_SEARCH_WIDTH }) => {
         {isLoading ? renderSpinner() : <SearchIcon size={25} />}
         <Input
           $isSuggesting={suggestions.length > 0}
+          data-test="autocomplete"
           placeholder="Search a name"
           {...bindInput}
         />
