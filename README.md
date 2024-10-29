@@ -10,7 +10,7 @@ This project is a frontend assignment for the Procurified interview process. It 
 - **Vite**: A build tool that provides a faster and leaner development experience for modern web projects. It offers instant server start, lightning-fast HMR (Hot Module Replacement), and optimized builds.
 - **React Router**: A standard library for routing in React applications. It enables the navigation among views of various components in a React Application, allows changing the browser URL, and keeps UI in sync with the URL.
 - **Zustand**: A small, fast, and scalable state-management solution for React. It provides a simple API and is easy to integrate into any React project.
-- **Cypress**: An end-to-end testing framework that aims to make testing easier and more reliable. It provides a comprehensive suite of tools for writing, running, and debugging tests.
+- **Cypress**: Runs on every push to remote Git repo. An end-to-end testing framework that aims to make testing easier and more reliable. It provides a comprehensive suite of tools for writing, running, and debugging tests.
 - **Jest + React Testing Library**: Jest is a delightful JavaScript testing framework with a focus on simplicity. React Testing Library is a set of helpers that let you test React components without relying on their implementation details.
 - **Eslint + Prettier + Husky + Lint-Staged**: A combination of DevX technologies aimed at standardizing the team code to use the same styling as well as to prevent pushing the buggy code to production. Every commit and push have preventative hooks to lint and test the code.
 
